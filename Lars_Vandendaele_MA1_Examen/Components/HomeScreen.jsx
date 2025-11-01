@@ -62,38 +62,26 @@ const HomeScreen = ({ navigation }) => {
     );
   }
 
-  if (sortedWeapons.length === 0) {
-    return (
-      <View style={styles.container}>
-        <WeaponsContainer
-          weapons={sortedWeapons}
-          search={search}
-          setSearch={setSearch}
-          sortBy={sortBy}
-          setSortBy={setSortBy}
-          filterBy={filterBy}
-          setFilterBy={setFilterBy}
-          onWeaponPress={handleWeaponPress}
-        />
+  return (
+    <View style={styles.container}>
+      <WeaponsContainer
+        weapons={sortedWeapons}
+        search={search}
+        setSearch={setSearch}
+        sortBy={sortBy}
+        setSortBy={setSortBy}
+        filterBy={filterBy}
+        setFilterBy={setFilterBy}
+        onWeaponPress={handleWeaponPress}
+      />
+      
+      {sortedWeapons.length === 0 && (
         <View style={styles.emptyContainer}>
           <Text style={styles.emptyText}>No weapons found</Text>
           <Text style={styles.emptySubtext}>Try adjusting your search or filters</Text>
         </View>
-      </View>
-    );
-  }
-
-  return (
-    <WeaponsContainer
-      weapons={sortedWeapons}
-      search={search}
-      setSearch={setSearch}
-      sortBy={sortBy}
-      setSortBy={setSortBy}
-      filterBy={filterBy}
-      setFilterBy={setFilterBy}
-      onWeaponPress={handleWeaponPress}
-    />
+      )}
+    </View>
   );
 };
 
