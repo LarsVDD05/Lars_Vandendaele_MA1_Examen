@@ -1,10 +1,11 @@
 import React, { useState, useEffect } from 'react';
-import { View, Text, StyleSheet } from 'react-native';
+import { View, Text, StyleSheet, TextInput } from 'react-native';
 import { FlashList } from '@shopify/flash-list';
 import { Weapons } from '../Data/weapons';
 
 const HomeScreen = ({ navigation }) => {
   const [weapons, setWeapons] = useState([]);
+  const [search, setSearch] = useState('');
 
   useEffect(() => {
     console.log('HomeScreen mounted');
@@ -15,6 +16,10 @@ const HomeScreen = ({ navigation }) => {
       console.log('HomeScreen unmounted');
     };
   }, []);
+
+  const filteredWeapons = weapons.filter(weapon =>
+    weapon.name.toLowerCase().includes(search.toLowerCase())
+  );
 
   const renderWeaponItem = ({ item }) => (
     <View style={styles.weaponCard}>
@@ -27,9 +32,15 @@ const HomeScreen = ({ navigation }) => {
   return (
     <View style={styles.container}>
       <Text style={styles.title}>Destiny 2 Weapons</Text>
+      <TextInput
+        style={styles.searchInput}
+        placeholder="Search weapons by name..."
+        value={search}
+        onChangeText={setSearch}
+      />
       
       <FlashList
-        data={weapons}
+        data={filteredWeapons}
         renderItem={renderWeaponItem}
         keyExtractor={(item) => item.id.toString()}
         estimatedItemSize={100}
@@ -46,6 +57,14 @@ const styles = StyleSheet.create({
   title: {
     fontSize: 24,
     fontWeight: 'bold',
+    marginBottom: 16,
+  },
+  searchInput: {
+    height: 40,
+    borderColor: '#ccc',
+    borderWidth: 1,
+    borderRadius: 8,
+    paddingHorizontal: 12,
     marginBottom: 16,
   },
   weaponCard: {
