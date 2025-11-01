@@ -7,6 +7,7 @@ const HomeScreen = ({ navigation }) => {
   const [weapons, setWeapons] = useState([]);
   const [search, setSearch] = useState('');
   const [sortBy, setSortBy] = useState('name');
+  const [filterBy, setFilterBy] = useState('all');
 
   useEffect(() => {
     console.log('HomeScreen mounted');
@@ -18,9 +19,11 @@ const HomeScreen = ({ navigation }) => {
     };
   }, []);
 
-  const filteredWeapons = weapons.filter(weapon =>
-    weapon.name.toLowerCase().includes(search.toLowerCase())
-  );
+  const filteredWeapons = weapons.filter(weapon => {
+    const matchesSearch = weapon.name.toLowerCase().includes(search.toLowerCase());
+    const matchesFilter = filterBy === 'all' || weapon.type === filterBy;
+    return matchesSearch && matchesFilter;
+  });
 
   const sortedWeapons = [...filteredWeapons].sort((a, b) => {
     switch (sortBy) {
@@ -66,6 +69,27 @@ const HomeScreen = ({ navigation }) => {
           <Text style={styles.sortButtonText}>Power</Text>
         </TouchableOpacity>
       </View>
+
+      <View style={styles.filterContainer}>
+  <Text style={styles.filterLabel}>Filter by type:</Text>
+  <View style={styles.filterButtons}>
+    <TouchableOpacity 
+      style={[styles.filterButton, filterBy === 'all' && styles.filterButtonActive]}
+      onPress={() => setFilterBy('all')}
+    >
+      <Text style={styles.filterButtonText}>All</Text>
+    </TouchableOpacity>
+    {[...new Set(weapons.map(weapon => weapon.type))].map(type => (
+        <TouchableOpacity 
+            key={type}
+            style={[styles.filterButton, filterBy === type && styles.filterButtonActive]}
+            onPress={() => setFilterBy(type)}
+        >
+            <Text style={styles.filterButtonText}>{type}</Text>
+        </TouchableOpacity>
+        ))}
+    </View>
+    </View>
       
       <FlashList
         data={sortedWeapons}
@@ -115,6 +139,31 @@ const styles = StyleSheet.create({
     backgroundColor: '#007acc',
   },
   sortButtonText: {
+    fontSize: 14,
+  },
+  filterContainer: {
+    marginBottom: 16,
+  },
+  filterLabel: {
+    fontSize: 16,
+    marginBottom: 8,
+  },
+  filterButtons: {
+    flexDirection: 'row',
+    flexWrap: 'wrap',
+  },
+  filterButton: {
+    paddingHorizontal: 12,
+    paddingVertical: 6,
+    backgroundColor: '#f0f0f0',
+    borderRadius: 6,
+    marginRight: 8,
+    marginBottom: 8,
+  },
+  filterButtonActive: {
+    backgroundColor: '#2e7d32',
+  },
+  filterButtonText: {
     fontSize: 14,
   },
   weaponCard: {
