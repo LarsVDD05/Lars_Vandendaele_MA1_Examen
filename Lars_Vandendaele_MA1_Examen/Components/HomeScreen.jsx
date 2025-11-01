@@ -66,6 +66,7 @@ const HomeScreen = ({ navigation }) => {
     <View style={styles.container}>
       <WeaponsContainer
         weapons={sortedWeapons}
+        allWeapons={weapons}
         search={search}
         setSearch={setSearch}
         sortBy={sortBy}

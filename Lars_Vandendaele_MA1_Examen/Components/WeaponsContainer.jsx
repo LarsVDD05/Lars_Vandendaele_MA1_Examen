@@ -4,6 +4,7 @@ import WeaponsList from './WeaponsList';
 
 const WeaponsContainer = ({ 
   weapons, 
+  allWeapons,
   search, 
   setSearch, 
   sortBy, 
@@ -48,7 +49,7 @@ const WeaponsContainer = ({
           >
             <Text style={styles.filterButtonText}>All</Text>
           </TouchableOpacity>
-          {[...new Set(weapons.map(weapon => weapon.type))].map(type => (
+          {[...new Set(allWeapons.map(weapon => weapon.type))].map(type => (
             <TouchableOpacity 
               key={type}
               style={[styles.filterButton, filterBy === type && styles.filterButtonActive]}

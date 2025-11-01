@@ -6,7 +6,7 @@ const ProfileScreen = () => {
     <ScrollView style={styles.container}>
       <View style={styles.header}>
         <Image 
-          source={require('../assets/adaptive-icon.png')} 
+          source={require('../assets/logo.png')} 
           style={styles.avatar}
         />
         <Text style={styles.name}>Lars Vandendaele</Text>
