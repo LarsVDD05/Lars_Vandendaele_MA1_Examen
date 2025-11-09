@@ -33,7 +33,7 @@ export const Weapons = [
     power: 1585,
     rarity: "Exotic", 
     description: "Fast-firing hip-fire hand cannon from the Golden Age. Perfect for gunslingers.",
-    image: require('../assets/the last word.jpg')
+    image: require('../assets/the-last-word.jpg')
   },
   {
     id: 5,
@@ -51,7 +51,7 @@ export const Weapons = [
     power: 1610,
     rarity: "Exotic",
     description: "Mythical fusion rifle that fires like an auto rifle. Forged in the Vault of Glass.",
-    image: require('../assets/vex mythoclast.jpg')
+    image: require('../assets/vex-mythoclast.jpg')
   },
   {
     id: 7,
@@ -60,7 +60,7 @@ export const Weapons = [
     power: 1590,
     rarity: "Exotic",
     description: "Exotic pulse rifle that fires two-round bursts. Final shot in burst causes a Void explosion.",
-    image: require('../assets/graviton lance.jpg')
+    image: require('../assets/graviton-lance.jpg')
   },
   {
     id: 8,
@@ -69,7 +69,7 @@ export const Weapons = [
     power: 1585,
     rarity: "Exotic",
     description: "Precision kills instantly reload this weapon and temporarily increase damage. String curses together.",
-    image: require('../assets/bad juju.jpg')
+    image: require('../assets/bad-juju.jpg')
   },
   {
     id: 9,
